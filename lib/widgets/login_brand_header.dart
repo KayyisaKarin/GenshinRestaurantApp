@@ -1,4 +1,4 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class LoginBrandHeader extends StatelessWidget {
@@ -27,7 +27,7 @@ class LoginBrandHeader extends StatelessWidget {
         ),
         SizedBox(height: 20),
         Text(
-          'Flowee',
+          'genshin_restaurant',
           style: AppTheme.display(
             fontSize: 32,
             color: Colors.white,

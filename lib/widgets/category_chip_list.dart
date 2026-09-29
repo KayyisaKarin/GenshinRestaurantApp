@@ -1,4 +1,4 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CategoryChipList extends StatelessWidget {
@@ -37,7 +37,7 @@ class CategoryChipList extends StatelessWidget {
             ),
             backgroundColor: isSelected
                 ? AppTheme.primary
-                : AppTheme.primarySoft.withValues(alpha: 0.5),
+                : AppTheme.primaryLight.withValues(alpha: 0.5),
                 side: BorderSide.none,
                 elevation: 0,
                 pressElevation:  0,

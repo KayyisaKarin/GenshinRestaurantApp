@@ -1,6 +1,6 @@
 {
-    "name": "flowee_app",
-    "short_name": "flowee_app",
+    "name": "genshin_restaurant_app",
+    "short_name": "genshin_restaurant_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

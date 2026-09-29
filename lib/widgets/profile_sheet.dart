@@ -1,8 +1,8 @@
-import 'package:flowee_app/data/dummy_data.dart';
-import 'package:flowee_app/screens/login_screen.dart';
-import 'package:flowee_app/state/auth_controller.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/sheet_drag_handle.dart';
+import 'package:genshin_restaurant_app/data/dummy_data.dart';
+import 'package:genshin_restaurant_app/screens/login_screen.dart';
+import 'package:genshin_restaurant_app/state/auth_controller.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/widgets/sheet_drag_handle.dart';
 import 'package:flutter/material.dart';
 
 void showProfileSheet(BuildContext context) { //function pendukung ketika user melakukan clicking, akan muncul ketika user melakukan triggering action nanti akan muncul profilesheet

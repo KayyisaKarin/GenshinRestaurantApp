@@ -1,5 +1,5 @@
-import 'package:flowee_app/screens/splash_screen.dart';
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/screens/splash_screen.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class GenshinRestaurantApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Flowee App",
+      title: "genshin_restaurant App",
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
       home: SplashScreen(),

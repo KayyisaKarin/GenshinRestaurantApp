@@ -1,6 +1,6 @@
-import 'package:flowee_app/screens/favorite_screen.dart';
-import 'package:flowee_app/screens/home_screen.dart';
-import 'package:flowee_app/widgets/bottom_nav_item.dart';
+import 'package:genshin_restaurant_app/screens/favorite_screen.dart';
+import 'package:genshin_restaurant_app/screens/home_screen.dart';
+import 'package:genshin_restaurant_app/widgets/bottom_nav_item.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {

@@ -1,9 +1,9 @@
-import 'package:flowee_app/data/dummy_data.dart';
-import 'package:flowee_app/screens/detail_screen.dart';
-import 'package:flowee_app/state/favorites_controller.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/empty_favorite_state.dart';
-import 'package:flowee_app/widgets/flower_card.dart';
+import 'package:genshin_restaurant_app/data/dummy_data.dart';
+import 'package:genshin_restaurant_app/screens/detail_screen.dart';
+import 'package:genshin_restaurant_app/state/favorites_controller.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/widgets/empty_favorite_state.dart';
+import 'package:genshin_restaurant_app/widgets/flower_card.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatelessWidget {

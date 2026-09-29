@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flowee_app/models/promo_banner.dart';
-import 'package:flowee_app/widgets/banner_slide.dart';
-import 'package:flowee_app/widgets/carousel_dots.dart';
+import 'package:genshin_restaurant_app/models/promo_banner.dart';
+import 'package:genshin_restaurant_app/widgets/banner_slide.dart';
+import 'package:genshin_restaurant_app/widgets/carousel_dots.dart';
 import 'package:flutter/material.dart';
 
 class BannerCarousel extends StatefulWidget {

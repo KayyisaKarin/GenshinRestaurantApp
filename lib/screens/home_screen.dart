@@ -1,8 +1,8 @@
-import 'package:flowee_app/data/dummy_data.dart';
-import 'package:flowee_app/models/flower.dart';
-import 'package:flowee_app/screens/detail_screen.dart';
-import 'package:flowee_app/widgets/flower_card.dart';
-import 'package:flowee_app/widgets/home_content_header.dart';
+import 'package:genshin_restaurant_app/data/dummy_data.dart';
+import 'package:genshin_restaurant_app/models/flower.dart';
+import 'package:genshin_restaurant_app/screens/detail_screen.dart';
+import 'package:genshin_restaurant_app/widgets/flower_card.dart';
+import 'package:genshin_restaurant_app/widgets/home_content_header.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

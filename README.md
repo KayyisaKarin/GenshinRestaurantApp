@@ -1,4 +1,4 @@
-# flowee_app
+# genshin_restaurant_app
 
 A new Flutter project.
 

@@ -1,4 +1,4 @@
-import 'package:flowee_app/models/promo_banner.dart';
+import 'package:genshin_restaurant_app/models/promo_banner.dart';
 import 'package:flutter/material.dart';
 
 class BannerSlide extends StatelessWidget {

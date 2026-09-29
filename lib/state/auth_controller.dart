@@ -6,7 +6,7 @@ class AuthController extends ValueNotifier<bool> {
 
   static final AuthController instance = AuthController._();
 
-  static const _prefKey = "flowee_is_logged_in";
+  static const _prefKey = "genshin_restaurant_is_logged_in";
 
   // Dipanggil sekali saat aplikasi baru dibuka (Muncul Splash Screen)
   // Untuk membaca status login yang tersimpan dari sesi SEBELUMNYA

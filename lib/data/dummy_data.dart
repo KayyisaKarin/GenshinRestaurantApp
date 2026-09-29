@@ -4,8 +4,8 @@ import '../models/flower.dart';
 import '../models/promo_banner.dart';
 
 class DummyUser {
-  static const String email = 'demo@flowee.com';
-  static const String password = 'flowee123';
+  static const String email = 'demo@genshin_restaurant.com';
+  static const String password = 'genshin_restaurant123';
   static const String name = 'Demo User';
 }
 

@@ -1,4 +1,4 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeHeader extends StatelessWidget {

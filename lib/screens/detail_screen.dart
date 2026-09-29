@@ -1,9 +1,9 @@
-import 'package:flowee_app/models/flower.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/detail_header.dart';
-import 'package:flowee_app/widgets/detail_total.dart';
-import 'package:flowee_app/widgets/product_summary.dart';
-import 'package:flowee_app/widgets/quantity_stepper.dart';
+import 'package:genshin_restaurant_app/models/flower.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/widgets/detail_header.dart';
+import 'package:genshin_restaurant_app/widgets/detail_total.dart';
+import 'package:genshin_restaurant_app/widgets/product_summary.dart';
+import 'package:genshin_restaurant_app/widgets/quantity_stepper.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {

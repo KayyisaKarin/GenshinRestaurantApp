@@ -1,10 +1,10 @@
-import 'package:flowee_app/data/dummy_data.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/banner_carousel.dart';
-import 'package:flowee_app/widgets/category_chip_list.dart';
-import 'package:flowee_app/widgets/home_header.dart';
-import 'package:flowee_app/widgets/profile_sheet.dart';
-import 'package:flowee_app/widgets/search_field.dart';
+import 'package:genshin_restaurant_app/data/dummy_data.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/widgets/banner_carousel.dart';
+import 'package:genshin_restaurant_app/widgets/category_chip_list.dart';
+import 'package:genshin_restaurant_app/widgets/home_header.dart';
+import 'package:genshin_restaurant_app/widgets/profile_sheet.dart';
+import 'package:genshin_restaurant_app/widgets/search_field.dart';
 import 'package:flutter/material.dart';
 
 class HomeContentHeader extends StatelessWidget {

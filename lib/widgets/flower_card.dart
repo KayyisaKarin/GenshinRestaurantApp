@@ -1,7 +1,7 @@
-import 'package:flowee_app/models/flower.dart';
-import 'package:flowee_app/state/favorites_controller.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/flower_image.dart';
+import 'package:genshin_restaurant_app/models/flower.dart';
+import 'package:genshin_restaurant_app/state/favorites_controller.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/widgets/flower_image.dart';
 import 'package:flutter/material.dart';
 
 class FlowerCard extends StatelessWidget {

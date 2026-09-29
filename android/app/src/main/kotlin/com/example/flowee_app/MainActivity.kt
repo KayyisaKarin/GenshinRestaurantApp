@@ -1,4 +1,4 @@
-package com.example.flowee_app
+package com.example.genshin_restaurant_app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,5 @@
-import 'package:flowee_app/models/flower.dart';
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:genshin_restaurant_app/models/flower.dart';
+import 'package:genshin_restaurant_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProductSummary extends StatelessWidget {
@@ -38,13 +38,13 @@ class _CategoryBadge extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: AppTheme.leaf.withValues(alpha: 0.12),
+        color: AppTheme.primaryLight.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: AppTheme.leaf,
+          color: AppTheme.primaryLight,
           fontSize: 11,
           fontWeight: FontWeight.w700,
         ),

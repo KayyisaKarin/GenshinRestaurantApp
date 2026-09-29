@@ -99,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen>
               child: FadeTransition(
                 opacity: _textFade,
                 child: Text(
-                  'Flowee',
+                  'genshin_restaurant',
                   style: AppTheme.display(
                     fontSize: 34,
                     color: Colors.white,

@@ -1,16 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const Color primary = Color(0xFFD6336C);
-  static const Color primaryDark = Color(0xFFA0224D);
-  static const Color primarySoft = Color(0xFFF7D9E3);
-  static const Color leaf = Color(0xFF4C7A5D);
-  static const Color background = Color(0xFFFFFAF6);
-  static const Color surface = Colors.white;
-  static const Color textPrimary = Color(0xFF2B2730);
-  static const Color textSecondary = Color(0xFF938C97);
+  static const Color primary = Color(0xFFF2901F);
+  static const Color primaryLight = Color(0xFFF9AE2F);
+  static const Color primaryDark = Color(0xFFA6423C);
+  static const Color background = Color(0xFFFFFFFF);
+  static const Color surface = Color(0xFFFFFFFF);
+  static const Color textPrimary = Color(0xFF351D13);
+  static const Color textSecondary = Color(0xFF7A6B65);
 
   /// Elegant serif used for the brand wordmark and product/section headings.
   static TextStyle display({
@@ -88,9 +86,9 @@ class AppTheme {
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.white,
+        backgroundColor: surface,
         selectedItemColor: primary,
-        unselectedItemColor: Colors.grey.shade400,
+        unselectedItemColor: textSecondary,
         type: BottomNavigationBarType.fixed,
         elevation: 0,
         selectedLabelStyle: const TextStyle(

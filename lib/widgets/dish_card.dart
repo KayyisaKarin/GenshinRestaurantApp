@@ -1,13 +1,14 @@
-import 'package:genshin_restaurant_app/models/flower.dart';
+import 'package:flutter/material.dart';
+import 'package:genshin_restaurant_app/models/dish.dart';
+import 'package:genshin_restaurant_app/state/cart_controller.dart';
 import 'package:genshin_restaurant_app/state/favorites_controller.dart';
 import 'package:genshin_restaurant_app/theme/app_theme.dart';
-import 'package:genshin_restaurant_app/widgets/flower_image.dart';
-import 'package:flutter/material.dart';
+import 'package:genshin_restaurant_app/widgets/dish_image.dart';
 
-class FlowerCard extends StatelessWidget {
-  const FlowerCard({super.key, required this.flower, required this.onTap});
+class DishCard extends StatelessWidget {
+  const DishCard({super.key, required this.dish, required this.onTap});
 
-  final Flower flower;
+  final Dish dish;
   final VoidCallback onTap;
 
   @override
@@ -21,7 +22,7 @@ class FlowerCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: AppTheme.primaryDark.withValues(alpha: 0.08),
+              color: AppTheme.primaryDark.withValues(alpha: .08),
               blurRadius: 16,
               offset: Offset(0, 6),
             ),
@@ -39,31 +40,29 @@ class FlowerCard extends StatelessWidget {
                       top: Radius.circular(20),
                     ),
                     child: Hero(
-                      tag: 'flower-image-${flower.id}',
-                      child: FlowerNetworkImage(
-                        imageUrl: flower.imageUrl,
-                        fallbackIcon: flower.icon,
-                        fallbackColor: flower.color,
+                      tag: 'dish-image-${dish.id}',
+                      child: DishNetworkImage(
+                        imageUrl: dish.imageUrl,
+                        fallbackIcon: dish.icon,
+                        fallbackColor: dish.color,
                       ),
                     ),
                   ),
-
                   Positioned(
-                    top: 8, 
-                    left: 8, 
-                    child: _RatingChip(rating: flower.rating)
-                    ),
-
+                    top: 8,
+                    left: 8,
+                    child: _RatingChip(rating: dish.rating),
+                  ),
                   Positioned(
                     top: 6,
                     right: 6,
                     child: ValueListenableBuilder<Set<String>>(
-                      valueListenable: FavoritesController.instance, //FavController.instance
+                      valueListenable: FavoritesController.instance,
                       builder: (context, favorites, _) {
-                        final isFav = favorites.contains(flower.id);
+                        final isFav = favorites.contains(dish.id);
                         return InkWell(
                           borderRadius: BorderRadius.circular(20),
-                          onTap: () => FavoritesController.instance.toggle(flower.id),
+                          onTap: () => FavoritesController.instance.toggle(dish.id),
                           child: CircleAvatar(
                             radius: 16,
                             backgroundColor: Colors.white,
@@ -86,7 +85,7 @@ class FlowerCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    flower.name,
+                    dish.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -96,13 +95,43 @@ class FlowerCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 5),
-                  Text(
-                    formatRupiah(flower.price),
-                    style: TextStyle(
-                      color: AppTheme.primaryDark,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 14,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        formatRupiah(dish.price),
+                        style: TextStyle(
+                          color: AppTheme.primaryDark,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 14,
+                        ),
+                      ),
+                      // Quick Add to Cart button (+)
+                      InkWell(
+                        borderRadius: BorderRadius.circular(20),
+                        onTap: () {
+                          CartController.instance.addToCart(dish, 1);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Added ${dish.name} to cart'),
+                              duration: Duration(milliseconds: 1500),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: AppTheme.primaryLight.withValues(alpha: 0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.add,
+                            size: 16,
+                            color: AppTheme.primaryDark,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -113,7 +142,6 @@ class FlowerCard extends StatelessWidget {
     );
   }
 }
-
 
 class _RatingChip extends StatelessWidget {
   const _RatingChip({required this.rating});
@@ -138,7 +166,7 @@ class _RatingChip extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 11,
-              fontWeight: FontWeight.w500
+              fontWeight: FontWeight.w500,
             ),
           )
         ],

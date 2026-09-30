@@ -1,73 +1,61 @@
-import 'package:genshin_restaurant_app/models/flower.dart';
+import 'package:flutter/material.dart';
+import 'package:genshin_restaurant_app/models/dish.dart';
 import 'package:genshin_restaurant_app/state/favorites_controller.dart';
 import 'package:genshin_restaurant_app/theme/app_theme.dart';
 import 'package:genshin_restaurant_app/widgets/circle_icon_button.dart';
-import 'package:genshin_restaurant_app/widgets/flower_image.dart';
-import 'package:flutter/material.dart';
+import 'package:genshin_restaurant_app/widgets/dish_image.dart';
 
 class DetailHeader extends StatelessWidget {
-  const DetailHeader({super.key, required this.flower, required this.onBack});
+  const DetailHeader({super.key, required this.dish, required this.onBack});
 
-  final Flower flower;
+  final Dish dish;
   final VoidCallback onBack;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
+    return Container(
+      height: 310,
       width: double.infinity,
+      color: AppTheme.primaryLight.withValues(alpha: 0.25),
       child: Stack(
         children: [
-          Positioned.fill(
+          Center(
             child: Hero(
-              tag: 'flower-image${flower.id}',
-              child: FlowerNetworkImage(
-                imageUrl: flower.imageUrl,
-                fallbackIcon: flower.icon,
-                fallbackColor: flower.color,
+              tag: 'dish-image-${dish.id}',
+              child: DishNetworkImage(
+                imageUrl: dish.imageUrl,
+                fallbackIcon: dish.icon,
+                fallbackColor: dish.color,
               ),
             ),
           ),
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleIconButton(
-                    icon: Icons.arrow_back_rounded,
-                    onTap: onBack,
+                  CircleIconButton(icon: Icons.arrow_back, onTap: onBack),
+                  ValueListenableBuilder<Set<String>>(
+                    valueListenable: FavoritesController.instance,
+                    builder: (context, favorites, _) {
+                      final isFav = favorites.contains(dish.id);
+                      return CircleIconButton(
+                        icon: isFav ? Icons.favorite : Icons.favorite_border,
+                        iconColor: isFav
+                            ? AppTheme.primary
+                            : AppTheme.textPrimary,
+                        onTap: () =>
+                            FavoritesController.instance.toggle(dish.id),
+                      );
+                    },
                   ),
-                  _FavoriteButton(flowerId: flower.id),
                 ],
               ),
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _FavoriteButton extends StatelessWidget {
-  const _FavoriteButton({required this.flowerId});
-
-  final String flowerId;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<Set<String>>(
-      valueListenable: FavoritesController.instance,
-      builder: (context, favoritesId, _) {
-        final isFavorite = favoritesId.contains(flowerId);
-        return CircleIconButton(
-          icon: isFavorite
-              ? Icons.favorite_rounded
-              : Icons.favorite_border_rounded,
-          iconColor: isFavorite ? AppTheme.primary : Colors.black87,
-          onTap: () => FavoritesController.instance.toggle(flowerId),
-        );
-      },
     );
   }
 }

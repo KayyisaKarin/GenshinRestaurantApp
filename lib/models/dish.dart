@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Property
-class Flower {
+class Dish {
   final String id;
   final String name;
   final String category;
@@ -12,8 +11,7 @@ class Flower {
   final IconData icon;
   final Color color;
 
-  // Constructur
-  Flower({
+  Dish({
     required this.id,
     required this.name,
     required this.category,
@@ -22,7 +20,6 @@ class Flower {
     required this.description,
     required this.imageUrl,
     required this.icon,
-    required this.color
+    required this.color,
   });
-
 }

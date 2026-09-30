@@ -1,9 +1,9 @@
-import 'package:genshin_restaurant_app/data/dummy_data.dart';
-import 'package:genshin_restaurant_app/models/flower.dart';
-import 'package:genshin_restaurant_app/screens/detail_screen.dart';
-import 'package:genshin_restaurant_app/widgets/flower_card.dart';
-import 'package:genshin_restaurant_app/widgets/home_content_header.dart';
 import 'package:flutter/material.dart';
+import 'package:genshin_restaurant_app/data/dummy_data.dart';
+import 'package:genshin_restaurant_app/models/dish.dart';
+import 'package:genshin_restaurant_app/screens/detail_screen.dart';
+import 'package:genshin_restaurant_app/widgets/dish_card.dart';
+import 'package:genshin_restaurant_app/widgets/home_content_header.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,72 +13,80 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _query = '';
-  String _selectedCategory = 'Semua';
+  String _searchQuery = '';
+  String _selectedCategory = 'All';
 
-  List<String> get _categories {
-    final unique = <String>{'Semua', ...dummyFlowers.map((f) => f.category)};
-    return unique.toList();
+  final List<String> _categories = [
+    'All',
+    'Mondstadt',
+    'Liyue',
+    'Inazuma',
+    'Fontaine',
+    'Sumeru',
+    'Natlan',
+    'Nod Krai',
+  ];
+
+  List<Dish> get _filteredDishes {
+    return dummyDishes.where((dish) {
+      final matchesQuery =
+          dish.name.toLowerCase().contains(_searchQuery.toLowerCase());
+      final matchesCat =
+          _selectedCategory == 'All' || dish.category == _selectedCategory;
+      return matchesQuery && matchesCat;
+    }).toList();
   }
 
-  List<Flower> get _filteredFlowers {
-    return dummyFlowers.where((flower) {
-      final matchesQuery = flower.name.toLowerCase().contains(
-        _query.toLowerCase(),
-      );
-      final matchesCategory =
-          _selectedCategory == 'Semua' || flower.category == _selectedCategory;
-      return matchesQuery && matchesCategory;
-    }).toList(); // .toList() dipanggil langsung pada method where()
-  }
-
-  void _openDetail(Flower flower) {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (_) => DetailScreen(flower: flower)));
+  void _openDetail(Dish dish) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => DetailScreen(dish: dish)),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final flowers = _filteredFlowers;
-    return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: HomeContentHeader(
-              selectedCategory: _selectedCategory,
-              categories: _categories,
-              onQueryChanged: (value) => setState(() => _query = value),
-              onCategorySelected: (value) =>
-                  setState(() => _selectedCategory = value),
+    final dishes = _filteredDishes;
+
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: HomeContentHeader(
+            categories: _categories,
+            selectedCategory: _selectedCategory,
+            onCategorySelected: (cat) => setState(() => _selectedCategory = cat),
+            onQueryChanged: (q) => setState(() => _searchQuery = q),
+          ),
+        ),
+        if (dishes.isEmpty)
+          const SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child: Text(
+                'No Dishes Found',
+                style: TextStyle(color: Colors.grey, fontSize: 15),
+              ),
+            ),
+          )
+        else
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 0.72,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => DishCard(
+                  dish: dishes[index],
+                  onTap: () => _openDetail(dishes[index]),
+                ),
+                childCount: dishes.length,
+              ),
             ),
           ),
-          if(flowers.isEmpty)
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Center(child: Text('Bunga Tidak Ditemukan')),
-          )
-          else 
-          SliverPadding(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 100),
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => FlowerCard(
-                  flower: flowers[index], 
-                  onTap: () => _openDetail(flowers[index]),
-                  ),
-                  childCount: flowers.length,
-              ), 
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 0.68
-                )
-              ),
-            )
-        ],
-      ),
+      ],
     );
   }
 }

@@ -1,23 +1,23 @@
-import 'package:genshin_restaurant_app/models/flower.dart';
+import 'package:flutter/material.dart';
+import 'package:genshin_restaurant_app/models/dish.dart';
+import 'package:genshin_restaurant_app/state/cart_controller.dart';
 import 'package:genshin_restaurant_app/theme/app_theme.dart';
 import 'package:genshin_restaurant_app/widgets/detail_header.dart';
 import 'package:genshin_restaurant_app/widgets/detail_total.dart';
 import 'package:genshin_restaurant_app/widgets/product_summary.dart';
 import 'package:genshin_restaurant_app/widgets/quantity_stepper.dart';
-import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key, required this.flower});
+  const DetailScreen({super.key, required this.dish});
 
-  final Flower flower;
+  final Dish dish;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  int _quantity =
-      1; // Nilai ini hidup selama widget state ini ada. Setiap kali diubah lewat setState, Flutter akan melakukan rebuild.
+  int _quantity = 1;
 
   void _increment() => setState(() => _quantity++);
   void _decrement() {
@@ -27,23 +27,25 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   void _addToCart() {
-    final flower = widget.flower;
+    final dish = widget.dish;
+    CartController.instance.addToCart(dish, _quantity);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('$_quantity x ${flower.name} ditambahkan ke keranjang'),
+        content: Text('$_quantity x ${dish.name} added to cart'),
+        duration: Duration(milliseconds: 1800),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final flower = widget.flower;
+    final dish = widget.dish;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
           DetailHeader(
-            flower: flower,
+            dish: dish,
             onBack: () => Navigator.of(context).pop(),
           ),
           Expanded(
@@ -58,31 +60,31 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProductSummary(flower: flower),
+                    ProductSummary(dish: dish),
                     SizedBox(height: 22),
                     Text(
                       'Deskripsi',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: AppTheme.textPrimary
+                        color: AppTheme.textPrimary,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      flower.description,
+                      dish.description,
                       style: TextStyle(
                         color: AppTheme.textSecondary,
                         height: 1.6,
-                        fontSize: 13.5
+                        fontSize: 13.5,
                       ),
                     ),
                     SizedBox(height: 26),
                     QuantityStepper(
-                      quantity: _quantity, 
-                      onIncrement: _increment, 
-                      onDecrement: _decrement
-                      ),
+                      quantity: _quantity,
+                      onIncrement: _increment,
+                      onDecrement: _decrement,
+                    ),
                     SizedBox(height: 50),
                   ],
                 ),
@@ -99,8 +101,8 @@ class _DetailScreenState extends State<DetailScreen> {
         elevation: 2,
         icon: Icon(Icons.shopping_bag_outlined, size: 20),
         label: Text('Tambah', style: TextStyle(fontWeight: FontWeight.w700)),
-        ),
-        bottomNavigationBar: DetailTotalBar(totalPrice: flower.price * _quantity),
+      ),
+      bottomNavigationBar: DetailTotalBar(totalPrice: dish.price * _quantity),
     );
   }
 }

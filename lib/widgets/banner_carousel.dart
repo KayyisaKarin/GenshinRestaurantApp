@@ -24,12 +24,12 @@ class _BannerCarouselState extends State<BannerCarousel> {
   void initState() {
     super.initState();
     // -> Menjalankan fungsi didalamny secara berulang ulang.
-    _timer = Timer.periodic(const Duration(seconds: 4), (_) {
+    _timer = Timer.periodic(Duration(seconds: 4), (_) {
       if (!mounted || widget.banners.isEmpty) return;
       final next = (_page + 1) % widget.banners.length;
       _controller.animateToPage(
         next,
-        duration: const Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
     });
@@ -47,7 +47,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.banners.isEmpty) return const SizedBox.shrink();
+    if (widget.banners.isEmpty) return SizedBox.shrink();
 
     return Column(
       children: [
@@ -62,7 +62,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
                 BannerSlide(banner: widget.banners[index]),
           ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         CarouselDots(
           count: widget.banners.length,
           activeIndex: _page,

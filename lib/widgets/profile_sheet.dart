@@ -23,7 +23,7 @@ class _ProfileSheetContent extends StatelessWidget {
     await AuthController.instance.logout();
     if (homeContext.mounted) { // apapun yang depannya ada ! artinya kebalikannya (not) dan mounted artinya "ready"
       Navigator.of(homeContext).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const LoginScreen()), // arahkan navigasi ke loginscreen (tambahan buat mute)
+        MaterialPageRoute(builder: (_) => LoginScreen()), // arahkan navigasi ke loginscreen (tambahan buat mute)
         /**
          * Predicate ini bilang: hapus SEMUA halaman sebelmunya dari riwayat navigasi/halaman
          * Predicate, satu properties atau parameter yang berfungsi menghapus semua parameter... intinya menghapus semua session

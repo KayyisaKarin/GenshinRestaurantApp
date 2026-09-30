@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       Navigator.of(
         context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => const MainScreen()));
+      ).pushReplacement(MaterialPageRoute(builder: (_) => MainScreen()));
     } else{
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -73,17 +73,17 @@ class _LoginScreenState extends State<LoginScreen> {
         // hiasan glow paling belakang, lalu konten form di atasnya.
         child: Stack(
           children: [
-            const Positioned(top: -70, right: -50, child: DecorativeGlow(size: 220)),
-            const Positioned(bottom: -90, left: -70, child: DecorativeGlow(size: 260)),
-            const Positioned(top: 190, left: -40, child: DecorativeGlow(size: 110)),
+            Positioned(top: -70, right: -50, child: DecorativeGlow(size: 220)),
+            Positioned(bottom: -90, left: -70, child: DecorativeGlow(size: 260)),
+            Positioned(top: 190, left: -40, child: DecorativeGlow(size: 110)),
             SafeArea(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
+                padding: EdgeInsets.fromLTRB(24, 16, 24, 28),
                 child: Column(
                   children: [
-                    const SizedBox(height: 16),
-                    const LoginBrandHeader(),
-                    const SizedBox(height: 36),
+                    SizedBox(height: 16),
+                    LoginBrandHeader(),
+                    SizedBox(height: 36),
                     LoginFormCard(
                       formKey: _formKey,
                       emailController: _emailController,

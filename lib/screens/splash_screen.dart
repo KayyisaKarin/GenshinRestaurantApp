@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../state/auth_controller.dart';
-import '../theme/app_theme.dart';
-import 'login_screen.dart';
-import 'main_screen.dart';
+import 'package:genshin_restaurant_app/screens/login_screen.dart';
+import 'package:genshin_restaurant_app/screens/main_screen.dart';
+import 'package:genshin_restaurant_app/state/auth_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,118 +10,76 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: Duration(milliseconds: 1400),
-  )..forward();
-
-  late final Animation<double> _iconScale = CurvedAnimation(
-    parent: _controller,
-    curve: Interval(0.0, 0.55, curve: Curves.easeOutBack),
-  );
-
-  late final Animation<double> _iconFade = CurvedAnimation(
-    parent: _controller,
-    curve: Interval(0.0, 0.4, curve: Curves.easeOut),
-  );
-
-  late final Animation<double> _textFade = CurvedAnimation(
-    parent: _controller,
-    curve: Interval(0.35, 0.75, curve: Curves.easeOut),
-  );
-
-  late final Animation<Offset> _textSlide =
-      Tween<Offset>(begin: Offset(0, 0.15), end: Offset.zero).animate(
-        CurvedAnimation(
-          parent: _controller,
-          curve: Interval(0.35, 0.75, curve: Curves.easeOutCubic),
-        ),
-      );
-
-  late final Animation<double> _lineWidth = CurvedAnimation(
-    parent: _controller,
-    curve: Interval(0.55, 1.0, curve: Curves.easeOutCubic),
-  );
+class _SplashScreenState extends State<SplashScreen> {
+  // Wrapped with wsrv.nl proxy to bypass host protection
+  static const String _bgImageUrl =
+      'https://images.weserv.nl/?url=wallpapercave.com/wp/wp9498634.jpg';
+      
 
   @override
   void initState() {
     super.initState();
-    _bootstrap();
+    _checkAuth();
   }
 
-  Future<void> _bootstrap() async {
-    await Future.wait([
-      AuthController.instance.loadPersistedSession(),
-      Future.delayed(Duration(milliseconds: 1600)),
-    ]);
-    if (!mounted) return;
+  Future<void> _checkAuth() async {
+    await AuthController.instance.loadPersistedSession();
+    await Future.delayed(const Duration(milliseconds: 2200));
 
+    if (!mounted) return;
     final isLoggedIn = AuthController.instance.value;
+
+    if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => isLoggedIn ? MainScreen() : LoginScreen(),
+        builder: (_) => isLoggedIn ? const MainScreen() : const LoginScreen(),
       ),
     );
   }
 
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primaryDark,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FadeTransition(
-              opacity: _iconFade,
-              child: ScaleTransition(
-                scale: _iconScale,
-                child: Icon(
-                  Icons.local_florist_rounded,
-                  size: 72,
-                  color: Colors.white,
-                ),
-              ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.network(
+            _bgImageUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) => Container(
+              color:  Color(0xFF1E1B2E),
             ),
-            SizedBox(height: 22),
-            SlideTransition(
-              position: _textSlide,
-              child: FadeTransition(
-                opacity: _textFade,
-                child: Text(
-                  'genshin_restaurant',
-                  style: AppTheme.display(
-                    fontSize: 34,
+          ),
+
+          Container(
+            color: Colors.black.withValues(alpha: 0.75),
+          ),
+
+          const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.soup_kitchen,
+                  size: 80,
+                  color: Colors.amber,
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Genshin Restaurant',
+                  style: TextStyle(
                     color: Colors.white,
-                    letterSpacing: 0.5,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
                   ),
                 ),
-              ),
+                SizedBox(height: 24),
+                CircularProgressIndicator(color: Colors.amber),
+              ],
             ),
-            SizedBox(height: 14),
-            AnimatedBuilder(
-              animation: _lineWidth,
-              builder: (context, child) {
-                return SizedBox(
-                  width: 46 * _lineWidth.value,
-                  child: Divider(
-                    color: Colors.white54,
-                    thickness: 1.2,
-                    height: 1,
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

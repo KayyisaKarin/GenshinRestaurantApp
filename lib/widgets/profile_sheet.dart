@@ -82,7 +82,7 @@ class _ProfileSheetContent extends StatelessWidget {
             child: OutlinedButton.icon(
               onPressed: () => _logout(context),
               icon: Icon(Icons.logout_rounded, size: 18),
-              label: Text('Keluar'),
+              label: Text('Logout'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppTheme.primaryDark,
                 side: BorderSide(color: AppTheme.primary),

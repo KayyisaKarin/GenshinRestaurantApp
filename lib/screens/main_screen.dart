@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:genshin_restaurant_app/screens/favorite_screen.dart';
 import 'package:genshin_restaurant_app/screens/home_screen.dart';
+import 'package:genshin_restaurant_app/screens/cart_screen.dart';
+import 'package:genshin_restaurant_app/state/cart_controller.dart';
 import 'package:genshin_restaurant_app/widgets/bottom_nav_item.dart';
-import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,7 +15,11 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  static const _screens = [HomeScreen(), FavoriteScreen()];
+  static const _screens = [
+    HomeScreen(),
+    FavoriteScreen(),
+    CartScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.10),
                 blurRadius: 24,
-                offset: Offset(0, 10),
+                offset: const Offset(0, 10),
               ),
             ],
           ),
@@ -45,13 +51,26 @@ class _MainScreenState extends State<MainScreen> {
                   onTap: () => setState(() => _selectedIndex = 0),
                 ),
               ),
-
               Expanded(
                 child: BottomNavItem(
                   icon: Icons.favorite_rounded,
                   label: 'Favorite',
                   selected: _selectedIndex == 1,
                   onTap: () => setState(() => _selectedIndex = 1),
+                ),
+              ),
+              Expanded(
+                child: AnimatedBuilder(
+                  animation: CartController.instance,
+                  builder: (context, _) {
+                    return BottomNavItem(
+                      icon: Icons.shopping_bag_rounded,
+                      label: 'Cart',
+                      badgeCount: CartController.instance.totalCount,
+                      selected: _selectedIndex == 2,
+                      onTap: () => setState(() => _selectedIndex = 2),
+                    );
+                  },
                 ),
               ),
             ],

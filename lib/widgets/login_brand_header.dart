@@ -20,14 +20,14 @@ class LoginBrandHeader extends StatelessWidget {
             )
           ),
           child: Icon(
-            Icons.local_florist_rounded,
+            Icons.soup_kitchen,
             size: 40,
             color: Colors.white,
           ),
         ),
         SizedBox(height: 20),
         Text(
-          'genshin_restaurant',
+          'Genshin Restaurant',
           style: AppTheme.display(
             fontSize: 32,
             color: Colors.white,
@@ -36,7 +36,7 @@ class LoginBrandHeader extends StatelessWidget {
         ),
         SizedBox(height: 6),
         Text(
-          'Rangkaian bunga segar, dikirim dengan cinta.',
+          'Find the best dish for you from all over Teyvat.',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.85),

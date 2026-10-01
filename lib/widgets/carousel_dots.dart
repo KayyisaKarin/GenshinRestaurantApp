@@ -19,7 +19,7 @@ class CarouselDots extends StatelessWidget {
       children: List.generate(count, (index) {
         final isActive = index == activeIndex;
         return AnimatedContainer(
-          duration: Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 250),
           margin: EdgeInsets.symmetric(horizontal: 3),
           width: isActive ? 20 : 6,
           height: 6,

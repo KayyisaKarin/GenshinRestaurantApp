@@ -67,8 +67,8 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: const Color(0xFFF7F2F0),
-        labelStyle: const TextStyle(color: textSecondary, fontSize: 13.5),
-        contentPadding: const EdgeInsets.symmetric(
+        labelStyle: TextStyle(color: textSecondary, fontSize: 13.5),
+        contentPadding: EdgeInsets.symmetric(
           horizontal: 18,
           vertical: 16,
         ),
@@ -91,7 +91,7 @@ class AppTheme {
         unselectedItemColor: textSecondary,
         type: BottomNavigationBarType.fixed,
         elevation: 0,
-        selectedLabelStyle: const TextStyle(
+        selectedLabelStyle: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,
         ),

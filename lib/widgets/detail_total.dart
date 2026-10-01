@@ -25,7 +25,7 @@ class DetailTotalBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Total Harga',
+              'Total Price',
               style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
             ),
             Text(

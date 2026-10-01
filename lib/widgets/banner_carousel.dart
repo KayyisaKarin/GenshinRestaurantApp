@@ -15,7 +15,6 @@ class BannerCarousel extends StatefulWidget {
 }
 
 class _BannerCarouselState extends State<BannerCarousel> {
-  // Page Controller => Mengatur slide mana yg sedang tampil di PageView
   late final PageController _controller = PageController();
   Timer? _timer;
   int _page = 0;
@@ -23,7 +22,6 @@ class _BannerCarouselState extends State<BannerCarousel> {
   @override
   void initState() {
     super.initState();
-    // -> Menjalankan fungsi didalamny secara berulang ulang.
     _timer = Timer.periodic(Duration(seconds: 4), (_) {
       if (!mounted || widget.banners.isEmpty) return;
       final next = (_page + 1) % widget.banners.length;
@@ -36,9 +34,6 @@ class _BannerCarouselState extends State<BannerCarousel> {
   }
 
   @override
-  // Timer harus dicancel saat widget dihancurkan (tidak tampil di layar lagi).
-  // Kalau lupa, timer akan mencoba jalan di bg walau carouselny sudah tidak muncul di layar.
-  // ini salah satu penyebab umum memory leak di Flutter.
   void dispose() {
     _timer?.cancel();
     _controller.dispose();
@@ -56,7 +51,6 @@ class _BannerCarouselState extends State<BannerCarousel> {
           child: PageView.builder(
             controller: _controller,
             itemCount: widget.banners.length,
-            // Dipanggil juga saat pengguna swipe manual, bukan cuma saat digeser otomatis oleh timer supaya titik indikator di bawah selalu sinkron
             onPageChanged: (index) => setState(() => _page = index),
             itemBuilder: (context, index) =>
                 BannerSlide(banner: widget.banners[index]),

@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         else
           SliverPadding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 100),
             sliver: SliverGrid(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

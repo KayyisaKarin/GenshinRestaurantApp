@@ -15,7 +15,7 @@ class HomeHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Halo, Demo User ✌🏻',
+              'Welcome Back, Traveler!',
               style: TextStyle(
                 fontSize: 13,
                 color: AppTheme.textSecondary
@@ -23,7 +23,7 @@ class HomeHeader extends StatelessWidget {
             ),
             SizedBox(height: 3),
             Text(
-              'Bunga apa hari ini?',
+              'Seven Nations. One Restaurant.',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w800,

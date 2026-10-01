@@ -63,7 +63,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     ProductSummary(dish: dish),
                     SizedBox(height: 22),
                     Text(
-                      'Deskripsi',
+                      'Description',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
@@ -100,7 +100,7 @@ class _DetailScreenState extends State<DetailScreen> {
         foregroundColor: Colors.white,
         elevation: 2,
         icon: Icon(Icons.shopping_bag_outlined, size: 20),
-        label: Text('Tambah', style: TextStyle(fontWeight: FontWeight.w700)),
+        label: Text('Add', style: TextStyle(fontWeight: FontWeight.w700)),
       ),
       bottomNavigationBar: DetailTotalBar(totalPrice: dish.price * _quantity),
     );

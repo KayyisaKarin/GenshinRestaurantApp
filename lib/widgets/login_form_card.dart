@@ -46,7 +46,7 @@ class _LoginFormCardState extends State<LoginFormCard> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Masuk ke Akunmu',
+              'Login to your account',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 19,
@@ -56,7 +56,7 @@ class _LoginFormCardState extends State<LoginFormCard> {
             ),
             SizedBox(height: 5),
             Text(
-              'Isi data di bawah ini untuk mulai berbelanja.',
+              'Fill in your data in the form below.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
             ),

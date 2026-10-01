@@ -1,0 +1,29 @@
+# Flutter / Dart build outputs
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+*.dill
+*.dill.track.dill
+
+# Android / iOS generated files
+.gradle/
+**/android/app/profile/
+**/android/app/release/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/DerivedData/
+*.mode1v3
+*.mode2v3
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+
+# Editors & IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/

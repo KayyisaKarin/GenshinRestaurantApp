@@ -35,7 +35,7 @@ class HomeContentHeader extends StatelessWidget {
           ),
           SizedBox(height: 22),
           Text(
-            'Rekomendasi Untukmu',
+            'Recommendations for you.',
             style: AppTheme.display(fontSize: 18)
           ),
           SizedBox(height: 14)
